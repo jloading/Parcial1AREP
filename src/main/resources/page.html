@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>Calculadora</h1>
+<form action="/hello">
+    <label for="valor1">Valor 1:</label><br>
+    <input type="text" id="valor1" name="name" value="1"><br><br>
+    <label for="valor2">Valor 2:</label><br>
+    <input type="text" id="valor2" name="name" value="1"><br><br>
+    <input type="button" value="Submit" onclick="result()">
+</form>
+<div id="getrespmsg"></div>
+
+<script>
+            function loadGetMsg() {
+                let nameVar = document.getElementById("name").value;
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("getrespmsg").innerHTML =
+                    this.responseText;
+                }
+                xhttp.open("GET", "/hello?name="+nameVar);
+                xhttp.send();
+            }
+
+            function result(){
+                var x = Number(document.getElementById("valor1").value);
+                var y = Number(document.getElementById("valor2").value)
+                let resultado = x + y;
+                console.log(resultado);
+                document.getElementById("getrespmsg").innerHTML =
+                    resultado;
+            }
+
+        </script>
+
+</body>
+</html>
